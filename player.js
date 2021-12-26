@@ -3,8 +3,8 @@ class Player {
     constructor(name) {
         this.name = name;
         this.life = 100;
-        this.defense = 100;
-        this.attack = 100;
+        this.defense = null;
+        this.attack = null;
     }
 
     incLife(val) {
