@@ -1,3 +1,5 @@
+require('Logger.js');
+
 class Player {
 
     constructor(name) {
@@ -5,14 +7,17 @@ class Player {
         this.life = 100;
         this.defense = null;
         this.attack = null;
+        this.logger = new Logger();
     }
 
     incLife(val) {
         this.life += val;
+        console.info(`[Increase Life] - The life `)
     }
 
     decLife(val) {
         this.life -= val;
+        console.info();
     }
 
     incDefense(val) {
