@@ -1,6 +1,18 @@
+var itemsNames = [
+  'Weapon',
+  'Trap',
+  'Potion'
+];
+var randomName = Math.floor(Math.random()*itemsNames.length);
+
+var abilities = [
+'Health',
+'Attack',
+'Defence'
+];
+var randomAbilty = Math.floor(Math.random()*abilities.length);
+
 class Item {
-
-
     constructor() {
       // weapon||trap||potion
       this._itemname = itemsNames[randomName] ; 
@@ -10,29 +22,20 @@ class Item {
 
       // health||attack||defence
       this._ability =abilities[randomAbilty]; 
-      
+
       // -20 to 20
       this._amount = Math.floor(Math.random() * 40) - 20; 
     }
    
     show() {
-      return 'I have a ' + this.itemname;
+      console.log( 'You have got a ' + this._itemname);
+      console.log( 'and you gain ' + this._amount + ' to your ' + this._ability);
     }
   }
-  var itemsNames = [
-    'weapon',
-    'trap',
-    'potion'
-];
-var randomName = Math.floor(Math.random()*itemsNames.length);
+  
 
-var abilities = [
-  'health',
-  'attack',
-  'defence'
-];
-var randomAbilty = Math.floor(Math.random()*abilities.length);
-
+  let newItem= new Item();
+  newItem.show();
 
 
   // function genertor() {
