@@ -65,10 +65,28 @@ export class Board {
         this.board = this.generateEnemys;
         this.board = this.generateItems;
         this.generateMapFlag = 1;
-      } else {
+      } 
+      else {
         console.log("Board has already been generated.");
       }
-    }
-  
+    }  
+
+    fight(enemy){
+      let round = 1;
+          while(!this.user.dead() && !enemy.dead()){
+            console.log (`[Fight] - Round: ${round}`);
+            user.attack(enemy);
+            if(enemy.dead()){
+                // delete this.enemies[this.enemies.findIndex(enemy)];
+                console.log('[Win] - You defeated your enemy Well Done!!');
+                break;
+              }
+            enemy.attack(user);
+            if(user.dead()){
+                console.log('[Game Over] - You have been defeated!');
+                break;
+            }
+            round++;
+          }
+      }
   }
-  

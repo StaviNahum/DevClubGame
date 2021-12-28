@@ -29,24 +29,24 @@ function run() {
 
 run();
 
-function fight(user,enemy){
+// function fight(user,enemy){
 
-let round=1;
-    while(!user.dead()&&!enemy.dead()){
-        console.log ('Round: ' +round);
-        round++;
-        enemy.beenAttacked(user);
-        if(enemy.dead()){
-            console.log('You defeat your enemy Well Done!');
-            break;
-        }
-        user.beenAttacked(enemy);
-        if(user.dead()){
-            console.log('You are dead!');
-            break;
-        }
-    }
-}
+// let round=1;
+//     while(!user.dead()&&!enemy.dead()){
+//         console.log ('Round: ' +round);
+//         round++;
+//         enemy.beenAttacked(user);
+//         if(enemy.dead()){
+//             console.log('You defeat your enemy Well Done!');
+//             break;
+//         }
+//         user.beenAttacked(enemy);
+//         if(user.dead()){
+//             console.log('You are dead!');
+//             break;
+//         }
+//     }
+// }
 
 function openmenu(){
     console.log('~MOVEMENT~');
@@ -68,7 +68,7 @@ rl.question('What is your name ? ', function (name) {
     console.log(`Hello ${name}, Welcome To The GAME!`)
       rl.close();
     });
-    while(!newUser.dead()&&newUser.possion.x!=size&&newUser.possion.y!=size){ //need to fix
+    while(!newUser.dead() && newUser.getPossion().x!=size && newUser.possion.y!=size){ //need to fix
         openmenu();
         rl.question('What is your move ? ', function (move) {
             board.move(); // ??
@@ -85,12 +85,8 @@ rl.question('What is your name ? ', function (name) {
             console.log('You Are Dead!');
             if(newUser.possion.x==size&&newUser.possion.y==size) //need to fix
             console.log('You Win!');
-
-
-
     }
-
-  
+ 
   rl.on('close', function () {
     console.log('\nBYE BYE !!!');
     process.exit(0);

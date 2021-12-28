@@ -7,14 +7,18 @@ export class Player {
         this.attack = null;
     }
 
-    beenAttacked(player) {
-        let damage = player.attack - this.defense;
+    attack(player) {
+        let damage = this.attack - player.defense;
         if(damage < 0)
             damage = 0;
-        this.health -= damage;
-        console.info (`[Attack] - ${player.name} has been attacked by ${player.name}: ${damage} damage!`);
+        player.sethealth(damage);
+        console.info (`[Attack] - ${this.name} attacked ${player.name}: ${damage} damage!`);
         console.log (`${this.name} currect health: ${this.health} HP`);
         console.log ('----------------------------------------------------------');
+    }
+
+    sethealth(damage) {
+        this.health -= damage;
     }
 
     getHealth() {
@@ -27,6 +31,10 @@ export class Player {
 
     getAttack() {
         return this.attack;
+    }
+
+    attack(player) {
+        player.beenAttacked(this);
     }
 
     dead() {
