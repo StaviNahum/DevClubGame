@@ -9,9 +9,9 @@ export class User extends Player{
         this.attack = attack;
     }
 
-    grab(grabbedItem) {
-        let item = new Item();
-        item = grabbedItem;
+    grab(item) {
+        // let item = new Item();
+        // item = grabbedItem;
         switch(item.ability) {
             case 'health':
                 {

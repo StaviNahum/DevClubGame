@@ -9,7 +9,6 @@ export class Player {
     }
 
     beenAttacked(attack) {
-        const newHealth = this.health
         this.health -= attack - this.defense;
     }
 
