@@ -60,30 +60,35 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
+  readline.question(`What's your name?`, name => {
+    console.log(`Hi ${name}!`)
+    readline.close()
+  })
+
 console.log('~THE GAME~');
 console.log('___________');
 
-rl.question('What is your name ? ', function (name) {
-    let newUser = new User(name,30,10);
+rl.question('What is your name ? ', name => {
+    let user = new User(name,30,10);
     console.log(`Hello ${name}, Welcome To The GAME!`)
       rl.close();
     });
-    while(!newUser.dead() && newUser.getPossion().x!=size && newUser.possion.y!=size){ //need to fix
+    while(!user.dead() && user.getPossion().x!=size && user.possion.y!=size){ //need to fix
         openmenu();
         rl.question('What is your move ? ', function (move) {
             board.move(); // ??
             
-            if(board[newUser.possion.x][newUser.possion.y] instanceof Item){
-                board[newUser.possion.x][newUser.possion.y].grab();
+            if(board[user.possion.x][user.possion.y] instanceof Item){
+                board[user.possion.x][user.possion.y].grab();
             }
-            if(board[newUser.possion.x][newUser.possion.y] instanceof Enemy){
-                fight(newUser,board[newUser.possion.x][newUser.possion.y]);
+            if(board[user.possion.x][user.possion.y] instanceof Enemy){
+                fight(user,board[user.possion.x][user.possion.y]);
             }
               rl.close();
             });
-            if(newUser.dead())
+            if(user.dead())
             console.log('You Are Dead!');
-            if(newUser.possion.x==size&&newUser.possion.y==size) //need to fix
+            if(user.possion.x==size&&user.possion.y==size) //need to fix
             console.log('You Win!');
     }
  

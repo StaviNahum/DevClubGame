@@ -5,6 +5,10 @@ class Logger {
     }
 }
 
+// import { readline } from 'readline';
+
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
 
 // const prompt = require('prompt');
 
