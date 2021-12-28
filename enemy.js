@@ -3,7 +3,7 @@ import {Player} from './player.js';
 const names = [
     'Orc',
     'Goblin',
-    'Dragon'
+    'Dragon '
     ];
 
 export class Enemy extends Player{
@@ -13,4 +13,10 @@ export class Enemy extends Player{
         this.defense = Math.floor(Math.random() * 10) + 1;
         this.attack = Math.floor(Math.random() * 10) + 1;
     }
+    show() {
+        console.log( 'You get into a fight with ' + this.name);
+        console.log( 'Health: ' + this.health );
+        console.log( 'Attack: ' + this.attack );
+        console.log( 'Defense: ' + this.defense);
+      }
 }

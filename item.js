@@ -1,10 +1,10 @@
-const itemsNames = [
+var itemsNames = [
   'Weapon',
   'Trap',
   'Potion'
 ];
 
-const abilities = [
+var abilities = [
 'Health',
 'Attack',
 'Defence'
@@ -12,6 +12,7 @@ const abilities = [
 
 export class Item {
     constructor() {
+
       // weapon||trap||potion
       this.itemname = itemsNames[Math.floor(Math.random()*itemsNames.length)]; 
 
@@ -23,23 +24,11 @@ export class Item {
 
       // -20 to 20
       this.amount = Math.floor(Math.random() * 40) - 20; 
+      
     }
    
     show() {
-      console.log( 'You have got a ' + this._itemname);
-      console.log( 'and you gain ' + this._amount + ' to your ' + this._ability);
+      console.log( 'You have got a ' + this.itemname);
+      console.log( 'and you gain ' + this.amount + ' to your ' + this.ability);
     }
   }
-
-
-  // function genertor() {
-  //   let items;
-  //  for (let i=0;i<10;i++){
-  //    items[i]= new Item();
-  //  }
-  //  console.log(items) ;
-  // }
-  // genertor()
-
-  let newItem= new Item();
-newItem.show();

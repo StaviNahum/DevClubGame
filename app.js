@@ -2,6 +2,7 @@ import { Board } from './board.js';
 import { User } from './user.js';
 import { Enemy } from './enemy.js';
 import { Item } from './item.js';
+import { Player } from './player.js';
 
 // function run( )
 // {
@@ -46,6 +47,7 @@ function generateArr(arrType) {
             arr[i] = new Item();
         }        
     }
+    return arr;
 }
 
 
@@ -55,8 +57,54 @@ function run() {
     let enemies = generateArr('enemy');
     let items = generateArr('item');
     let board = new Board(enemies, items, user); 
+    board.generateEnemys(enemies);
+    board.generateItems(items);
     board.printBoard();
 }
 
 run();
 
+
+
+function fight(){
+let newUser = new User('Bar',30,10);
+let newEnemy = new Enemy();
+let round=1;
+    while(!newUser.dead()&&!newEnemy.dead()){
+        console.log ('Round: ' +round);
+        round++;
+        newEnemy.beenAttacked(newUser);
+        if(newEnemy.dead()){
+            console.log('You defeat your enemy Well Done!');
+            break;
+        }
+        newUser.beenAttacked(newEnemy);
+        if(newUser.dead()){
+            console.log('You are dead!');
+            break;
+        }
+    }
+}
+
+function menu(){
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+
+
+rl.question('What is your name ? ', function (name) {
+    rl.question('Where do you live ? ', function (country) {
+      console.log(`${name}, is a citizen of ${country}`);
+      rl.close();
+    });
+  });
+  
+  rl.on('close', function () {
+    console.log('\nBYE BYE !!!');
+    process.exit(0);
+  });
+}
+menu();

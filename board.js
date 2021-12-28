@@ -6,16 +6,17 @@ export class Board {
     constructor(enemyArr, itemArr, player) {
       //this.height = Math.floor(Math.random() * 1000) + 100;
       //this.width = Math.floor(Math.random()*1000) + 100;
-      this.generateMapFlag = 0;
+      this.generateMapFlag = 'flag';
       this.enemyArr = enemyArr;
       this.itemArr = itemArr;
       this.player = player;
       this.height = 10;
       this.width = 10;
-      this.board = [this.height][this.width];
+      this.board= new Array(this.height).fill(0).map(() => new Array(this.width).fill(0));
     }
     printBoard() {
       let line = "";
+      this.board[0][0]=this.player;
       for (let i = 0; i < this.height; i++){
           for (let j = 0; j < this.width; j++){
               if (this.board[i][j] !== this.player){
@@ -29,7 +30,7 @@ export class Board {
           line = "";
       }
     }
-    generateEnemys(){
+    generateEnemys(enemyArr){
       let indexX = Math.floor(Math.random() * (this.height));
       let indexY = Math.floor(Math.random() * (this.width));
       for (let i = 0; i < this.enemyArr.length; i++){
@@ -42,7 +43,7 @@ export class Board {
         this.board[indexX][indexY] = this.enemyArr[i];
       }
     }
-    generateItems(){
+    generateItems(itemArr){
       let indexX = Math.floor(Math.random() * (this.height));
       let indexY = Math.floor(Math.random() * (this.width));
       for (let i = 0; i < this.itemArr.length; i++){

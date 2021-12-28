@@ -10,9 +10,9 @@ export class User extends Player{
     }
 
     grab(grabbedItem) {
-        let item = new Item();
-        item = grabbedItem;
-        switch(item.ability) {
+        // let item = new Item();
+        // item = grabbedItem;
+        switch(grabbedItem.ability) {
             case 'health':
                 {
                     this.health += item.amount;
@@ -33,5 +33,6 @@ export class User extends Player{
                     break;
                 }
         }
+        grabbedItem.show();
     }
 }
