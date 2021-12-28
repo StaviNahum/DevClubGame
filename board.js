@@ -16,6 +16,9 @@ export class Board {
       this.generate();
     }
 
+    trap(trap){
+      this.sethealth(grabbedItem.amount);
+    }
     generate() {
       let x;
       let y;
@@ -77,10 +80,11 @@ export class Board {
             console.log (`[Fight] - Round: ${round}`);
             user.attack(enemy);
             if(enemy.dead()){
-                // delete this.enemies[this.enemies.findIndex(enemy)];
-                console.log('[Win] - You defeated your enemy Well Done!!');
-                break;
-              }
+              let enemyIndex = this.enemies.findIndex(enemy);
+              delete this.enemies[enemyIndex];
+              console.log('[Win] - You defeated your enemy Well Done!!');
+              break;
+            }
             enemy.attack(user);
             if(user.dead()){
                 console.log('[Game Over] - You have been defeated!');
