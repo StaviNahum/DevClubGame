@@ -15,7 +15,9 @@ export class Board {
       this.board = new Array(this.height).fill(null).map(() => new Array(this.width).fill(null));
       this.generate();
     }
-
+    indexGet(x,y){
+      return this.board[x][y];
+    }
     trap(trap){
       this.sethealth(grabbedItem.amount);
     }
@@ -42,6 +44,27 @@ export class Board {
           y = Math.floor(Math.random() * (this.width));
         }
         this.board[x][y] = this.items[i];
+      }
+      this.board[0][0]=this.user;
+    }
+    move(moveString){
+      const position = this.user.getPosition();
+      const x = position['x'],y = position['y'];
+      switch(moveString){
+        case "up":
+          if (x > 0)
+            this.user.up();
+        case "down":
+          if (x < this.height - 1)
+            this.user.down();
+        case "right":
+          if (y < this.width - 1)
+            this.user.right();
+        case "left":
+          if (y > 0)
+            this.user.left();
+        default:
+          console.log("Movement is illegal.");
       }
     }
 
