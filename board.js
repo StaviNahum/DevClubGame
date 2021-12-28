@@ -16,6 +16,9 @@ export class Board {
       this.generate();
     }
 
+    trap(trap){
+      this.sethealth(grabbedItem.amount);
+    }
     generate() {
       let x;
       let y;

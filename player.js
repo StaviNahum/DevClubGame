@@ -20,6 +20,9 @@ export class Player {
     sethealth(damage) {
         this.health -= damage;
     }
+    setName(name) {
+        this.name = name;
+    }
 
     getHealth() {
         return this.health;

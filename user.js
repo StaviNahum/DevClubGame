@@ -10,29 +10,28 @@ export class User extends Player{
         this.position = {'x': 0, 'y': 0};
     }
 
-    grab(item) {
-        switch(item.ability) {
-            case 'health':
-                {
-                    this.health += item.amount;
-                    break;
-                }
-            case 'attack':
-                {
-                    this.attack += item.amount;
-                    break;
-                }
-            case 'defense':
-                {
-                    this.defense += item.amount;
-                    break;
-                }
-            default :
-                {
-                    break;
-                }
-        }
-        grabbedItem.show();
+    grab(grabbedItem) {
+            switch(grabbedItem.ability) {
+                case 'health':
+                    {
+                        this.health += grabbedItem.amount;
+                        break;
+                    }
+                case 'attack':
+                    {
+                        this.attack += grabbedItem.amount;
+                        break;
+                    }
+                case 'defense':
+                    {
+                        this.defense += grabbedItem.amount;
+                        break;
+                    }
+                default :
+                    {
+                        break;
+                    }
+            }
     }
 
     getPosition() {
