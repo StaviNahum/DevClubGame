@@ -11,7 +11,7 @@ export class Player {
     beenAttacked(player) {
         let damage= player.attack - this.defense;
         if(damage<0)
-        damage=0;
+            damage=0;
         this.health -= damage;
         console.log (player.name + ' Attack:' + damage + ' damage!');
         console.log (this.name+'Currect Health:' +this.health+'HP');

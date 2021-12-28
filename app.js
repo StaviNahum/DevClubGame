@@ -2,7 +2,6 @@ import { Board } from './board.js';
 import { User } from './user.js';
 import { Enemy } from './enemy.js';
 import { Item } from './item.js';
-import { Player } from './player.js';
 
 const NUM_OF_ENEMIES = 10;
 
@@ -25,84 +24,76 @@ function run() {
     let enemies = generateArr('enemy');
     let items = generateArr('item');
     let board = new Board(enemies, items, user); 
-    board.generateEnemys(enemies);
-    board.generateItems(items);
     board.printBoard();
 }
 
 run();
 
-function fight(){
-let newUser = new User('Bar',30,10);
-let newEnemy = new Enemy();
+function fight(user,enemy){
+
 let round=1;
-    while(!newUser.dead()&&!newEnemy.dead()){
+    while(!user.dead()&&!enemy.dead()){
         console.log ('Round: ' +round);
         round++;
-        newEnemy.beenAttacked(newUser);
-        if(newEnemy.dead()){
+        enemy.beenAttacked(user);
+        if(enemy.dead()){
             console.log('You defeat your enemy Well Done!');
             break;
         }
-        newUser.beenAttacked(newEnemy);
-        if(newUser.dead()){
+        user.beenAttacked(enemy);
+        if(user.dead()){
             console.log('You are dead!');
             break;
         }
     }
 }
 
-function menu(){
+function openmenu(){
+    console.log('~MOVEMENT~');
+    console.log('1. Right 2. Left 3. Up 4. Down');
+}
+
+function main(){
 const readline = require('readline');
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
 });
 
-
-
-console.log('');
-console.log('');
-console.log('');
-console.log('');
+console.log('~THE GAME~');
+console.log('___________');
 
 rl.question('What is your name ? ', function (name) {
-    rl.question('Where do you live ? ', function (country) {
-      console.log(`${name}, is a citizen of ${country}`);
+    let newUser = new User(name,30,10);
+    console.log(`Hello ${name}, Welcome To The GAME!`)
       rl.close();
     });
-  });
+    while(!newUser.dead()&&newUser.possion.x!=size&&newUser.possion.y!=size){ //need to fix
+        openmenu();
+        rl.question('What is your move ? ', function (move) {
+            board.move(); // ??
+            
+            if(board[newUser.possion.x][newUser.possion.y] instanceof Item){
+                board[newUser.possion.x][newUser.possion.y].grab();
+            }
+            if(board[newUser.possion.x][newUser.possion.y] instanceof Enemy){
+                fight(newUser,board[newUser.possion.x][newUser.possion.y]);
+            }
+              rl.close();
+            });
+            if(newUser.dead())
+            console.log('You Are Dead!');
+            if(newUser.possion.x==size&&newUser.possion.y==size) //need to fix
+            console.log('You Win!');
+
+
+
+    }
+
   
   rl.on('close', function () {
     console.log('\nBYE BYE !!!');
     process.exit(0);
   });
 }
-menu();
-
-// function run( )
-// {
-//     let rl = readline.createInterface({
-//         input: process.stdin,
-//         output: process.stdout,
-//         prompt: "command> "
-//     });
-
-//     const user = user( "Brave Adventurer");
-//     console.log( "Hello Player");
-
-//     let where = maze[1];
-//     let session = ( command ) => where = _run( where, player, command );
-//     session( "l");
-//     rl.prompt();
-//     rl.on("line", (line) => {
-//         session( line.trim() )
-//         rl.prompt();
-//     }).on("close", ()=>{
-//         console.log( "Fare thee well brave adventurer");
-//     });
-// }
-// run();
-
-// let newItem= new Item();
-// newItem.show();
+main();

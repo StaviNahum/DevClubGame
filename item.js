@@ -1,10 +1,10 @@
-var itemsNames = [
+const itemsNames = [
   'Weapon',
   'Trap',
   'Potion'
 ];
 
-var abilities = [
+const abilities = [
 'Health',
 'Attack',
 'Defence'
@@ -12,7 +12,6 @@ var abilities = [
 
 export class Item {
     constructor() {
-
       // weapon||trap||potion
       this.itemname = itemsNames[Math.floor(Math.random()*itemsNames.length)]; 
 
@@ -24,7 +23,6 @@ export class Item {
 
       // -20 to 20
       this.amount = Math.floor(Math.random() * 40) - 20; 
-      
     }
    
     show() {

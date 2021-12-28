@@ -3,7 +3,7 @@ import {Player} from './player.js';
 const names = [
     'Orc',
     'Goblin',
-    'Dragon '
+    'Dragon'
     ];
 
 export class Enemy extends Player{
@@ -18,5 +18,5 @@ export class Enemy extends Player{
         console.log( 'Health: ' + this.health );
         console.log( 'Attack: ' + this.attack );
         console.log( 'Defense: ' + this.defense);
-      }
+    }
 }
