@@ -4,37 +4,6 @@ import { Enemy } from './enemy.js';
 import { Item } from './item.js';
 import { Player } from './player.js';
 
-// function run( )
-// {
-//     let rl = readline.createInterface({
-//         input: process.stdin,
-//         output: process.stdout,
-//         prompt: "command> "
-//     });
-
-//     const user = user( "Brave Adventurer");
-//     console.log( "Hello Player");
-
-//     let where = maze[1];
-//     let session = ( command ) => where = _run( where, player, command );
-//     session( "l");
-//     rl.prompt();
-//     rl.on("line", (line) => {
-//         session( line.trim() )
-//         rl.prompt();
-//     }).on("close", ()=>{
-//         console.log( "Fare thee well brave adventurer");
-//     });
-// }
-// run();
-
-// let newItem= new Item();
-// newItem.show();
-
-
-
-
-
 const NUM_OF_ENEMIES = 10;
 
 function generateArr(arrType) {
@@ -50,7 +19,6 @@ function generateArr(arrType) {
     return arr;
 }
 
-
 function run() {
 
     let user = new User('Bar', 10, 10);
@@ -63,8 +31,6 @@ function run() {
 }
 
 run();
-
-
 
 function fight(){
 let newUser = new User('Bar',30,10);
@@ -95,6 +61,11 @@ const rl = readline.createInterface({
 
 
 
+console.log('');
+console.log('');
+console.log('');
+console.log('');
+
 rl.question('What is your name ? ', function (name) {
     rl.question('Where do you live ? ', function (country) {
       console.log(`${name}, is a citizen of ${country}`);
@@ -108,3 +79,30 @@ rl.question('What is your name ? ', function (name) {
   });
 }
 menu();
+
+// function run( )
+// {
+//     let rl = readline.createInterface({
+//         input: process.stdin,
+//         output: process.stdout,
+//         prompt: "command> "
+//     });
+
+//     const user = user( "Brave Adventurer");
+//     console.log( "Hello Player");
+
+//     let where = maze[1];
+//     let session = ( command ) => where = _run( where, player, command );
+//     session( "l");
+//     rl.prompt();
+//     rl.on("line", (line) => {
+//         session( line.trim() )
+//         rl.prompt();
+//     }).on("close", ()=>{
+//         console.log( "Fare thee well brave adventurer");
+//     });
+// }
+// run();
+
+// let newItem= new Item();
+// newItem.show();
