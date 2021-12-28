@@ -33,5 +33,6 @@ export class User extends Player{
                     break;
                 }
         }
+        grabbedItem.show();
     }
 }

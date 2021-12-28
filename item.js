@@ -26,20 +26,7 @@ export class Item {
     }
    
     show() {
-      console.log( 'You have got a ' + this._itemname);
-      console.log( 'and you gain ' + this._amount + ' to your ' + this._ability);
+      console.log( 'You have got a ' + this.itemname);
+      console.log( 'and you gain ' + this.amount + ' to your ' + this.ability);
     }
   }
-
-
-  // function genertor() {
-  //   let items;
-  //  for (let i=0;i<10;i++){
-  //    items[i]= new Item();
-  //  }
-  //  console.log(items) ;
-  // }
-  // genertor()
-
-  let newItem= new Item();
-newItem.show();
