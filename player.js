@@ -1,38 +1,48 @@
-require('Logger.js');
+export class Player {
 
-class Player {
-
-    constructor(name) {
-        this.name = name;
-        this.life = 100;
+    constructor() {
+        this.name = null;
+        this.health = 100;
         this.defense = null;
         this.attack = null;
-        this.logger = new Logger();
+        // this.logger = new Logger();
     }
 
-    incLife(val) {
-        this.life += val;
-        console.info(`[Increase Life] - The life `)
+    beenAttacked(attack) {
+        const newHealth = this.health
+        this.health -= attack - this.defense;
     }
 
-    decLife(val) {
-        this.life -= val;
-        console.info();
+    dead() {
+        if (this.health <= 0) {
+            return true;
+        }
+        return false;
     }
 
-    incDefense(val) {
-        this.defence += val;
-    }
+    // inchealth(val) {
+    //     this.health += val;
+    //     console.info(`[Increase health] - The health `)
+    // }
 
-    decDefense(val) {
-        this.defence -= val;
-    }
+    // dechealth(val) {
+    //     this.health -= val;
+    //     console.info();
+    // }
+
+    // incDefense(val) {
+    //     this.defence += val;
+    // }
+
+    // decDefense(val) {
+    //     this.defence -= val;
+    // }
     
-    incAttack(val) {
-        this.attack += val;
-    }
+    // incAttack(val) {
+    //     this.attack += val;
+    // }
 
-    decAttack(val) {
-        this.attack -= val;
-    }
+    // decAttack(val) {
+    //     this.attack -= val;
+    // }
 }

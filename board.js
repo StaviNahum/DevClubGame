@@ -1,4 +1,8 @@
-class board {
+import { User } from './user.js';
+import { Enemy } from './enemy.js';
+import { Item } from './item.js';
+
+export class Board {
     constructor(enemyArr, itemArr, player) {
       //this.height = Math.floor(Math.random() * 1000) + 100;
       //this.width = Math.floor(Math.random()*1000) + 100;
