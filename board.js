@@ -12,7 +12,7 @@ export class Board {
       this.user = user;
       this.height = 10;
       this.width = 10;
-      this.board= new Array(this.height).fill(null).map(() => new Array(this.width).fill(null));
+      this.board = new Array(this.height).fill(null).map(() => new Array(this.width).fill(null));
       this.generate();
     }
 
@@ -21,11 +21,8 @@ export class Board {
       let y;
       // Generate enemies array
       for (let i = 0; i < this.enemies.length; i++){
-        do {
-          x = Math.floor(Math.random() * (this.height - 2)) + 1;
-          y = Math.floor(Math.random() * (this.width - 2)) + 1;
-          }
-        // console.log(typeof(this.board[x][y]));
+        x = Math.floor(Math.random() * (this.height - 2)) + 1;
+        y = Math.floor(Math.random() * (this.width - 2)) + 1;
         while (this.board[x][y] !== null){
           x = Math.floor(Math.random() * (this.height));
           y = Math.floor(Math.random() * (this.width));
@@ -35,10 +32,8 @@ export class Board {
 
       //Generate items array
       for (let i = 0; i < this.items.length; i++){
-        do {
-          let x = Math.floor(Math.random() * (this.height - 2)) + 1;
-          let y = Math.floor(Math.random() * (this.width - 2)) + 1;
-          }
+        x = Math.floor(Math.random() * (this.height - 2)) + 1;
+        y = Math.floor(Math.random() * (this.width - 2)) + 1;
         while (this.board[x][y] !== null){
           x = Math.floor(Math.random() * (this.height));
           y = Math.floor(Math.random() * (this.width));
@@ -49,14 +44,14 @@ export class Board {
 
     printBoard() {
       let line = "";
-      this.board[0][0]=this.user;
+      this.board[0][0] = this.user;
       for (let i = 0; i < this.height; i++){
           for (let j = 0; j < this.width; j++){
               if (this.board[i][j] !== this.user){
                 line += "|_|";
               }
               else{
-                line += "|P|";
+                line += "|U|";
               }
           }
           console.log(line);
@@ -64,19 +59,6 @@ export class Board {
       }
     }
 
-    // generateItems(items){
-    //   let x = Math.floor(Math.random() * (this.height));
-    //   let y = Math.floor(Math.random() * (this.width));
-    //   for (let i = 0; i < this.items.length; i++){
-    //     while ((this.board[x][y] !== null) &&
-    //       ((x !== 0)&& (y !== 0)) &&
-    //        ((x !== this.height - 1) && (y !== this.width - 1))){
-    //       x = Math.floor(Math.random() * (this.height));
-    //       y = Math.floor(Math.random() * (this.width));
-    //     }
-    //     this.board[x][y] = this.items[i];
-    //   }
-    // }
     generateMap() {
       if (!this.generateMap) {
         this.board[0][0] = this.user;

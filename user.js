@@ -7,11 +7,10 @@ export class User extends Player{
         this.name = name;
         this.defense = defense;
         this.attack = attack;
+        this.position = {'x': 0, 'y': 0};
     }
 
     grab(item) {
-        // let item = new Item();
-        // item = grabbedItem;
         switch(item.ability) {
             case 'health':
                 {
@@ -34,5 +33,25 @@ export class User extends Player{
                 }
         }
         grabbedItem.show();
+    }
+
+    getPosition() {
+        return this.position;
+    }
+
+    up() {
+        this.position.y--;        
+    }
+
+    down() {
+        this.position.y--;        
+    }
+
+    right() {
+        this.position.x++;
+    }
+
+    left() {
+        this.position.x--;
     }
 }
