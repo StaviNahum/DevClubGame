@@ -6,19 +6,34 @@ export class Board {
   constructor(enemies, items, user) {
     //this.height = Math.floor(Math.random() * 1000) + 100;
     //this.width = Math.floor(Math.random()*1000) + 100;
-    this.generateMapFlag = 'flag';
+    this.generateMapFlag = '0';
     this.enemies = enemies;
     this.items = items;
     this.user = user;
     this.height = 10;
     this.width = 10;
     this.board = new Array(this.height).fill(null).map(() => new Array(this.width).fill(null));
+    this.board[0][0] = this.user;
     this.generate();
   }
 
+  getIndex(position){
+    return this.board[position.x][position.y];
+  }
+
+  getFinishPosition() {
+    return {'x': this.width-1, 'y': this.height-1}
+  }
+
+  getUser() {
+    return this.user;
+  }
+
+  // Fixxx
   trap(trap){
     this.sethealth(grabbedItem.amount);
   }
+
   generate() {
     let x;
     let y;
@@ -47,32 +62,22 @@ export class Board {
 
   printBoard() {
     let line = "";
-    this.board[0][0] = this.user;
-    for (let i = 0; i < this.height; i++){
-        for (let j = 0; j < this.width; j++){
-            if (this.board[i][j] !== this.user){
-              line += "|_|";
-            }
-            else{
-              line += "|U|";
-            }
+    let cell = null;
+    // this.board[0][0] = this.user;
+    for (let i = 0; i < this.width; i++){
+      for (let j = 0; j < this.height; j++){
+        cell = this.board[i][j];
+        if(cell !== null) {
+          line += `|${cell.getIcon()}|`;
         }
-        console.log(line);
-        line = "";
+        else {
+          line += `|__|`
+        }
+      }
+      console.log(line);
+      line = "";
     }
   }
-
-  generateMap() {
-    if (!this.generateMap) {
-      this.board[0][0] = this.user;
-      this.board = this.generateEnemys;
-      this.board = this.generateItems;
-      this.generateMapFlag = 1;
-    } 
-    else {
-      console.log("Board has already been generated.");
-    }
-  }  
 
   fight(enemy){
     let round = 1;
@@ -136,5 +141,11 @@ export class Board {
         console.log("[Error] - Wrong direction");
         break;
     }
+
+    this.board[y][x] = null;
+    let newPosition = this.user.getPosition();
+    let newX = newPosition.x;
+    let newY = newPosition.y;
+    this.board[newY][newX] = this.user;    
   }
 }

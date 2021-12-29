@@ -5,6 +5,7 @@ export class Player {
         this.health = 100;
         this.defense = null;
         this.attack = null;
+        this.icon = null;
     }
 
     attack(player) {
@@ -20,12 +21,13 @@ export class Player {
     sethealth(damage) {
         this.health -= damage;
     }
-    setName(name) {
-        this.name = name;
-    }
 
     getHealth() {
         return this.health;
+    }
+
+    setName(name) {
+        this.name = name;
     }
 
     getDefense() {
@@ -34,6 +36,10 @@ export class Player {
 
     getAttack() {
         return this.attack;
+    }
+
+    getIcon(){
+        return this.icon;
     }
 
     attack(player) {

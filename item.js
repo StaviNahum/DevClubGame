@@ -1,3 +1,5 @@
+import emoji from 'node-emoji';
+
 const itemsNames = [
   'Weapon',
   'Trap',
@@ -10,6 +12,12 @@ const abilities = [
 'Defence'
 ];
 
+const icons = {
+  'Weapon': emoji.get("gun"),
+  'Trap': emoji.get("mouse_trap"),
+  'Potion': emoji.get("tropical_drink")
+}
+
 export class Item {
     constructor() {
       // weapon||trap||potion
@@ -19,7 +27,9 @@ export class Item {
       this.droprate = Math.floor(Math.random() * 10) + 1; ;
 
       // health||attack||defence
-      this.ability =abilities[Math.floor(Math.random()*abilities.length)]; 
+      this.ability = abilities[Math.floor(Math.random()*abilities.length)]; 
+
+      this.icon = icons[this.name];
 
       // Trap:-20 to 0 Other:0 to 20
       if(this.name == 'Trap')
@@ -41,5 +51,9 @@ export class Item {
 
     getName() {
       return this.name;
+    }
+
+    getIcon() {
+      return this.icon;
     }
   }

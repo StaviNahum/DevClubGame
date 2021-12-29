@@ -1,5 +1,6 @@
 import {Player} from './player.js';
 import {Item} from './item.js';
+import emoji from 'node-emoji';
  
 export class User extends Player{
     constructor(name, defense, attack) {
@@ -8,6 +9,7 @@ export class User extends Player{
         this.defense = defense;
         this.attack = attack;
         this.position = {'x': 0, 'y': 0};
+        this.icon = emoji.get("woman");
     }
 
     grab(grabbedItem) {
@@ -43,7 +45,7 @@ export class User extends Player{
     }
 
     down() {
-        this.position.y--;        
+        this.position.y++;        
     }
 
     right() {
