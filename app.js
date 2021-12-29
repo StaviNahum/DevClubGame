@@ -91,7 +91,7 @@ async function main(){
             if(cell instanceof Enemy){
                 fight(user,cell);
             }
-            board.move(ans);
+            board.move(newPosition);
             board.printBoard();
         }
     }
