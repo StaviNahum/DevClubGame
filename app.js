@@ -7,34 +7,34 @@ import readline from 'readline';
 
 const NUM_OF_ENEMIES = 10;
 
-function test(){
-    let i=0;
-    let user = new User('Player', 30, 10);
-    let enemies = generateArr('enemy');
-    let items = generateArr('item');
-    let board = new Board(enemies, items, user); 
-    while(i<100){
-        let round = 1;
+// function test(){
+//     let i=0;
+//     let user = new User('Player', 30, 10);
+//     let enemies = generateArr('enemy');
+//     let items = generateArr('item');
+//     let board = new Board(enemies, items, user); 
+//     while(i<100){
+//         let round = 1;
     
-        while(!user.dead() && !enemies[0].dead()){
-          console.log (`[Fight] - Round: ${round}`);
-          user.attack(enemies[0]);
-          if(enemies[0].dead()){
-            let enemyIndex = this.enemies[0].findIndex(enemies[0]);
-            delete this.enemies[enemyIndex];
-            console.log('[Win] - You defeated your enemy Well Done!!');
-            break;
-          }
-          enemies[0].attack(user);
-          if(user.dead()){
-              console.log('[Game Over] - You have been defeated!');
-              break;
-          }
-          round++;
-    }
-}
-}
-test();
+//         while(!user.dead() && !enemies[0].dead()){
+//           console.log (`[Fight] - Round: ${round}`);
+//           user.attack(enemies[0]);
+//           if(enemies[0].dead()){
+//             let enemyIndex = this.enemies[0].findIndex(enemies[0]);
+//             delete this.enemies[enemyIndex];
+//             console.log('[Win] - You defeated your enemy Well Done!!');
+//             break;
+//           }
+//           enemies[0].attack(user);
+//           if(user.dead()){
+//               console.log('[Game Over] - You have been defeated!');
+//               break;
+//           }
+//           round++;
+//     }
+// }
+// }
+// test();
 
 function generateArr(arrType) {
     let arr = [];
@@ -74,7 +74,7 @@ async function main(){
     console.log('~*~*~*~*~*~*~*~*~');
 
     // Get username from user
-    const username = await askQuestion("What is your name? ");
+    const username =  await askQuestion("What is your name? "); 
     console.log(`Hello ${username} Welcome to the Game!\n`);
     console.log('~*~*~*~*~*~*~*~*~');
     user = new User(username, 30, 10);
@@ -82,9 +82,13 @@ async function main(){
     // Create the game board
     let board = new Board(enemies, items, user); 
     board.printBoard();
+    
+    
 
-    while(!board.user.dead() && board.user.getPosition() !== board.getFinishPosition()) {
-        const ans = await askQuestion('Where do you want to move? -use keyboard.-\n');
+    while(!board.user.dead() && (board.user.getPosition().x != board.getFinishPosition().x) && (board.user.getPosition().y != board.getFinishPosition().y)) {
+        console.log(board.user.getPosition())
+        console.log(board.getFinishPosition())
+        const ans =  await askQuestion('Where do you want to move? -use keyboard.-\n'); 
         const newPosition = board.getNewPosition(ans);
         if(newPosition) {
             let cell = board.getCell(newPosition);
@@ -93,18 +97,17 @@ async function main(){
                 if(cell.name ==='Trap')
                     board.trap(cell);
                 else{
-                    console.log('Do you want to grab it?');
-                    v.addListener((e) => {
-                        if (e.name === "Y" && e.state == "DOWN") {
-                            user.grab(board[board.user.getPosition().x][board.user.getPosition().y]);
+                    const toGrab = await askQuestion('Do you want to grab it? -yes/no-\n');  
+                        if (toGrab=='yes') {
+                            user.grab(cell);
                         }
-                        if (e.name === "N" && e.state == "DOWN")
-                        return;
-                    });
+                        if (toGrab=='no')
+                        console.log('item not taken')
+                    
                 }
             }
             if(cell instanceof Enemy){
-                fight(user,cell);
+                board.fight(cell);
             }
             board.move(newPosition);
             board.printBoard();
@@ -112,7 +115,7 @@ async function main(){
     }
     if(board.user.dead())
         console.log('You Are Dead!');
-    if(user.getPosition() === board.getFinishPosition())
+    if((board.user.getPosition().x = board.getFinishPosition().x) && (board.user.getPosition().y = board.getFinishPosition().y))
         console.log('You Win!');
 }           
 main();

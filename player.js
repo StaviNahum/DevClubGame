@@ -8,7 +8,7 @@ export class Player {
         this.icon = null;
     }
 
-    attack(player) {
+    attackFight(player) {
         let damage = this.attack - player.defense;
         if(damage < 0)
             damage = 0;

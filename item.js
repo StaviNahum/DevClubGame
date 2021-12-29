@@ -9,7 +9,7 @@ const itemsNames = [
 const abilities = [
 'Health',
 'Attack',
-'Defence'
+'Defense'
 ];
 
 const icons = {

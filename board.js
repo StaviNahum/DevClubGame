@@ -16,19 +16,19 @@ export class Board {
   }
 
   getCell(position){
-    return this.board[position.x][position.y];
+    return this.board[position.y][position.x];
   }
 
   getFinishPosition() {
-    return {'x': this.width-1, 'y': this.height-1}
+    return {'x': this.height-1, 'y': this.width-1}
   }
 
   getUser() {
     return this.user;
-  }
+  }down
 
   // Fixxx
-  trap(trap){
+  trap(grabbedItem){
     this.user.sethealth(grabbedItem.amount);
   }
 
@@ -62,6 +62,9 @@ export class Board {
     let line = "";
     let cell = null;
     // this.board[0][0] = this.user;
+    console.log('_________________________________________________________');
+    console.log('|\tHealth:'+this.user.health+'\t Attack: '+this.user.attack+'\t Defense: '+this.user.defense + '\t|');
+    console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^');
     for (let i = 0; i < this.width; i++){
       for (let j = 0; j < this.height; j++){
         cell = this.board[i][j];
@@ -82,15 +85,15 @@ export class Board {
     
         while(!this.user.dead() && !enemy.dead()){
           console.log (`[Fight] - Round: ${round}`);
-          this.user.attack(enemy);
+          this.user.attackFight(enemy);
           if(enemy.dead()){
-            let enemyIndex = this.enemies.findIndex(enemy);
-            delete this.enemies[enemyIndex];
+           // let enemyIndex = this.enemies.findIndex(enemy);
+            // delete this.enemies[enemyIndex];
             console.log('[Win] - You defeated your enemy Well Done!!');
             break;
           }
-          enemy.attack(user);
-          if(user.dead()){
+          enemy.attackFight(this.user);
+          if(this.user.dead()){
               console.log('[Game Over] - You have been defeated!');
               break;
           }
