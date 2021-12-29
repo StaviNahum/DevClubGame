@@ -99,6 +99,7 @@ export class Board {
         }
   }
 
+// The function gets the chosen direction. Update the new podition of the user and return it.
   getNewPosition(direction) {  
     const position = this.user.getPosition();
     const x = position.x
@@ -151,6 +152,7 @@ export class Board {
 
   }
 
+  // The function gets the new position of the user and update the position in the board
   move(newPosition) {
     const newX = newPosition.x;
     const newY = newPosition.y;
