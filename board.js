@@ -81,22 +81,22 @@ export class Board {
 
   fight(enemy){
     let round = 1;
-        while(!this.user.dead() && !enemy.dead()){
-          console.log (`[Fight] - Round: ${round}`);
-          user.attack(enemy);
-          if(enemy.dead()){
-            let enemyIndex = this.enemies.findIndex(enemy);
-            delete this.enemies[enemyIndex];
-            console.log('[Win] - You defeated your enemy Well Done!!');
-            break;
-          }
-          enemy.attack(user);
-          if(user.dead()){
-              console.log('[Game Over] - You have been defeated!');
-              break;
-          }
-          round++;
-        }
+    while(!this.user.dead() && !enemy.dead()){
+      console.log (`[Fight] - Round: ${round}`);
+      this.user.attack(enemy);
+      if(enemy.dead()){
+        let enemyIndex = this.enemies.findIndex(enemy);
+        delete this.enemies[enemyIndex];
+        console.log('[Win] - You defeated your enemy Well Done!!');
+        break;
+      }
+      enemy.attack(this.user);
+      if(this.user.dead()){
+          console.log('[Game Over] - You have been defeated!');
+          break;
+      }
+      round++;
+    }
   }
 
 // The function gets the chosen direction. Update the new podition of the user and return it.

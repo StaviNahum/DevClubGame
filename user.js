@@ -55,8 +55,4 @@ export class User extends Player{
     left() {
         this.position.x--;
     }
-
-    won(position) {
-
-    }
 }
