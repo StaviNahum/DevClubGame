@@ -4,8 +4,6 @@ import { Item } from './item.js';
 
 export class Board {
   constructor(enemies, items, user) {
-    //this.height = Math.floor(Math.random() * 1000) + 100;
-    //this.width = Math.floor(Math.random()*1000) + 100;
     this.generateMapFlag = '0';
     this.enemies = enemies;
     this.items = items;
@@ -31,7 +29,7 @@ export class Board {
 
   // Fixxx
   trap(trap){
-    this.sethealth(grabbedItem.amount);
+    this.user.sethealth(grabbedItem.amount);
   }
 
   generate() {
@@ -81,9 +79,10 @@ export class Board {
 
   fight(enemy){
     let round = 1;
+    
         while(!this.user.dead() && !enemy.dead()){
           console.log (`[Fight] - Round: ${round}`);
-          user.attack(enemy);
+          this.user.attack(enemy);
           if(enemy.dead()){
             let enemyIndex = this.enemies.findIndex(enemy);
             delete this.enemies[enemyIndex];

@@ -2,24 +2,39 @@ import { Board } from './board.js';
 import { User } from './user.js';
 import { Enemy } from './enemy.js';
 import { Item } from './item.js';
+import { Player } from './player.js';
 import readline from 'readline';
 
 const NUM_OF_ENEMIES = 10;
 
-// function test(){
-//     let i=0;
-//     let user = new User('Player', 30, 10);
-//     let enemies = generateArr('enemy');
-//     let items = generateArr('item');
-//     let board = new Board(enemies, items, user); 
-//     while(i<100){
-//         const pos=board.getNewPosition('right');
-//         board.move(pos);
-//         board.printBoard();
-//         i++;
-//     }
-// }
-// test();
+function test(){
+    let i=0;
+    let user = new User('Player', 30, 10);
+    let enemies = generateArr('enemy');
+    let items = generateArr('item');
+    let board = new Board(enemies, items, user); 
+    while(i<100){
+        let round = 1;
+    
+        while(!user.dead() && !enemies[0].dead()){
+          console.log (`[Fight] - Round: ${round}`);
+          user.attack(enemies[0]);
+          if(enemies[0].dead()){
+            let enemyIndex = this.enemies[0].findIndex(enemies[0]);
+            delete this.enemies[enemyIndex];
+            console.log('[Win] - You defeated your enemy Well Done!!');
+            break;
+          }
+          enemies[0].attack(user);
+          if(user.dead()){
+              console.log('[Game Over] - You have been defeated!');
+              break;
+          }
+          round++;
+    }
+}
+}
+test();
 
 function generateArr(arrType) {
     let arr = [];
