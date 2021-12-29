@@ -68,10 +68,10 @@ export class Board {
       for (let j = 0; j < this.height; j++){
         cell = this.board[i][j];
         if(cell !== null) {
-          line += `|${cell.getIcon()}|`;
+          line += ` |${cell.getIcon()}| `;
         }
         else {
-          line += `|__|`
+          line += ` |__| `
         }
       }
       console.log(line);
