@@ -13,7 +13,8 @@ const NUM_OF_ENEMIES = 10;
 //     let items = generateArr('item');
 //     let board = new Board(enemies, items, user); 
 //     while(i<100){
-//         board.move('right');
+//         const pos=board.getNewPosition('right');
+//         board.move(pos);
 //         board.printBoard();
 //         i++;
 //     }
