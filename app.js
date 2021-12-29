@@ -69,7 +69,7 @@ async function main(){
     let board = new Board(enemies, items, user); 
     board.printBoard();
 
-    while(!board.user.dead() && board.user.getPosition() !== board.getFinishPosition()) { //need to fix
+    while(!board.user.dead() && board.user.getPosition() !== board.getFinishPosition()) {
         const ans = await askQuestion('Where do you want to move? -use keyboard.-\n');
         board.move(ans);
         board.printBoard();
@@ -95,7 +95,7 @@ async function main(){
     }
     if(board.user.dead())
         console.log('You Are Dead!');
-    if(user.getPosition() === board.getFinishPosition()) //need to fix
+    if(user.getPosition() === board.getFinishPosition())
         console.log('You Win!');
 }
            
