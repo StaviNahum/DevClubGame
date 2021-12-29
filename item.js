@@ -9,12 +9,12 @@ const itemsNames = [
 const abilities = [
 'Health',
 'Attack',
-'Defence'
+'Defense'
 ];
 
 const icons = {
   'Weapon': emoji.get("gun"),
-  'Trap': emoji.get("mouse_trap"),
+  'Trap': emoji.get("hand"),
   'Potion': emoji.get("tropical_drink")
 }
 
@@ -40,12 +40,12 @@ export class Item {
    
     show() {
       if(this.name == 'Weapon'||this.name == 'Potion'){
-        console.log( 'You found a ' + this.name);
+        console.info( '[Alert] - You found a ' + this.name);
         console.log( 'Ablity: ' + this.amount + ' to your ' + this.ability);
       }
       if(this.name=='Trap'){
-        console.log( 'You have step on a ' + this.name);
-        console.log( '[Trap] - ' + this.amount + 'damage');
+        console.info( '[Alert] - You have step on a ' + this.name);
+        console.log( '[Trap] - ' + this.amount + ' damage');
       }
     }
 

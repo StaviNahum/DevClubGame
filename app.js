@@ -3,22 +3,9 @@ import { User } from './user.js';
 import { Enemy } from './enemy.js';
 import { Item } from './item.js';
 import readline from 'readline';
+import { Console } from 'console';
 
 const NUM_OF_ENEMIES = 10;
-
-// function test(){
-//     let i=0;
-//     let user = new User('Player', 30, 10);
-//     let enemies = generateArr('enemy');
-//     let items = generateArr('item');
-//     let board = new Board(enemies, items, user); 
-//     while(i<100){
-//         board.move('right');
-//         board.printBoard();
-//         i++;
-//     }
-// }
-// test();
 
 function generateArr(arrType) {
     let arr = [];
@@ -37,6 +24,7 @@ function openmenu() {
     console.log('~MOVEMENT~');
     console.log('1. Right 2. Left 3. Up 4. Down (write in lower case)');
 }
+
 function askQuestion(query) {
     const rl = readline.createInterface({
         input: process.stdin,
@@ -45,11 +33,10 @@ function askQuestion(query) {
     return new Promise(resolve => rl.question(query, ans => {
         rl.close();
         resolve(ans);
-    }))
+    }));
 }
 
 async function main(){
-
     let user = null;
     let enemies = generateArr('enemy');
     let items = generateArr('item');
@@ -58,7 +45,7 @@ async function main(){
     console.log('~*~*~*~*~*~*~*~*~');
 
     // Get username from user
-    const username = await askQuestion("What is your name? ");
+    const username =  await askQuestion("What is your name? "); 
     console.log(`Hello ${username} Welcome to the Game!\n`);
     console.log('~*~*~*~*~*~*~*~*~');
     user = new User(username, 30, 10);
@@ -67,8 +54,8 @@ async function main(){
     let board = new Board(enemies, items, user); 
     board.printBoard();
 
-    while(!board.user.dead() && board.user.getPosition() !== board.getFinishPosition()) {
-        const ans = await askQuestion('Where do you want to move? -use keyboard.-\n');
+    while((!board.user.dead()) && ((board.user.getPosition().x !== board.getFinishPosition().x) || (board.user.getPosition().y !== board.getFinishPosition().y))) {
+        const ans =  await askQuestion('Where do you want to move? -use keyboard.-\n'); 
         const newPosition = board.getNewPosition(ans);
         if(newPosition) {
             let cell = board.getCell(newPosition);
@@ -76,27 +63,28 @@ async function main(){
                 cell.show();
                 if(cell.name ==='Trap')
                     board.trap(cell);
-                else{
-                    console.log('Do you want to grab it?');
-                    v.addListener((e) => {
-                        if (e.name === "Y" && e.state == "DOWN") {
-                            user.grab(board[board.user.getPosition().x][board.user.getPosition().y]);
-                        }
-                        if (e.name === "N" && e.state == "DOWN")
-                        return;
-                    });
+                else {
+                    const toGrab = await askQuestion('Do you want to grab it? -yes/no-\n');  
+                    if (toGrab=='yes') {
+                        user.grab(cell);
+                    }
+                    if (toGrab=='no') {
+                        console.log('Item not taken');       
+                    }             
                 }
             }
             if(cell instanceof Enemy){
-                board.fight(board.user,cell);
+                board.fight(cell);
             }
             board.move(newPosition);
             board.printBoard();
-        }
+        }        
     }
+
     if(board.user.dead())
         console.log('You Are Dead!');
-    if(user.getPosition() === board.getFinishPosition())
+    if((board.user.getPosition().x === board.getFinishPosition().x) && (board.user.getPosition().y === board.getFinishPosition().y))
         console.log('You Win!');
-}           
+} 
+          
 main();

@@ -4,8 +4,6 @@ import { Item } from './item.js';
 
 export class Board {
   constructor(enemies, items, user) {
-    //this.height = Math.floor(Math.random() * 1000) + 100;
-    //this.width = Math.floor(Math.random()*1000) + 100;
     this.generateMapFlag = '0';
     this.enemies = enemies;
     this.items = items;
@@ -18,7 +16,7 @@ export class Board {
   }
 
   getCell(position){
-    return this.board[position.x][position.y];
+    return this.board[position.y][position.x];
   }
 
   getFinishPosition() {
@@ -27,11 +25,11 @@ export class Board {
 
   getUser() {
     return this.user;
-  }
+  }down
 
   // Fixxx
-  trap(trap){
-    this.sethealth(grabbedItem.amount);
+  trap(grabbedItem){
+    this.user.sethealth(grabbedItem.amount);
   }
 
   generate() {
@@ -64,14 +62,17 @@ export class Board {
     let line = "";
     let cell = null;
     // this.board[0][0] = this.user;
+    console.log('_________________________________________________');
+    console.log(`|\tHealth:${this.user.health}  Attack: ${this.user.attack}  Defense: ${this.user.defense}\t|`);
+    console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^');
     for (let i = 0; i < this.width; i++){
       for (let j = 0; j < this.height; j++){
         cell = this.board[i][j];
         if(cell !== null) {
-          line += ` |${cell.getIcon()}| `;
+          line += `|${cell.getIcon()}| `;
         }
         else {
-          line += ` |__| `
+          line += `|__| `
         }
       }
       console.log(line);
@@ -83,14 +84,14 @@ export class Board {
     let round = 1;
     while(!this.user.dead() && !enemy.dead()){
       console.log (`[Fight] - Round: ${round}`);
-      this.user.attack(enemy);
+      this.user.hit(enemy);
       if(enemy.dead()){
-        let enemyIndex = this.enemies.findIndex(enemy);
+        let enemyIndex = this.enemies.findIndex(((e) => e.name === enemy.name));
         delete this.enemies[enemyIndex];
         console.log('[Win] - You defeated your enemy Well Done!!');
         break;
       }
-      enemy.attack(this.user);
+      enemy.hit(this.user);
       if(this.user.dead()){
           console.log('[Game Over] - You have been defeated!');
           break;
@@ -156,6 +157,6 @@ export class Board {
   move(newPosition) {
     const newX = newPosition.x;
     const newY = newPosition.y;
-    this.board[newY][newX] = this.user;    
+    this.board[newY][newX] = this.user;
   }
 }

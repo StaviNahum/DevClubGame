@@ -14,17 +14,17 @@ export class User extends Player{
 
     grab(grabbedItem) {
             switch(grabbedItem.ability) {
-                case 'health':
+                case 'Health':
                     {
                         this.health += grabbedItem.amount;
                         break;
                     }
-                case 'attack':
+                case 'Attack':
                     {
                         this.attack += grabbedItem.amount;
                         break;
                     }
-                case 'defense':
+                case 'Defense':
                     {
                         this.defense += grabbedItem.amount;
                         break;

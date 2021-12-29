@@ -8,7 +8,9 @@ export class Player {
         this.icon = null;
     }
 
-    attack(player) {
+    hit(player) {
+        console.log(`${this.name} - attack: ${this.attack}  defense: ${this.defense}`)
+        console.log(`${player.name} - attack: ${player.attack}  defense: ${player.defense}`)
         let damage = this.attack - player.defense;
         if(damage < 0)
             damage = 0;
