@@ -2,7 +2,7 @@
 
 # Installation
     - Run in terminal `npm install --save node-emoji` - to get the emojis
-    - Run in terminal `npm i; npm start`.
+    - Run in terminal `node app.js`.
 
 # Rules
     1. Movement - you can move one step every round. (up, down, right, left).

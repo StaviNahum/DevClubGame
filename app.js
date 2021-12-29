@@ -2,10 +2,8 @@ import { Board } from './board.js';
 import { User } from './user.js';
 import { Enemy } from './enemy.js';
 import { Item } from './item.js';
-//import { createRequire } from 'module';
 import readline from 'readline';
 
-//const require = createRequire(import.meta.url);
 const NUM_OF_ENEMIES = 10;
 
 // function test(){
