@@ -69,32 +69,32 @@ async function main(){
 
     while(!board.user.dead() && board.user.getPosition() !== board.getFinishPosition()) {
         const ans = await askQuestion('Where do you want to move? -use keyboard.-\n');
-        board.move(ans);
-        board.printBoard();
-        let tool = board.getIndex(board.user.getPosition());
-        if(tool instanceof Item) {
-            tool.show();
-            if(tool.name=='Trap')
-                board.trap(tool);
+        const newPosition = board.getNewPosition(ans);
+        let cell = board.getCell(newPosition);
+        if(cell instanceof Item) {
+            cell.show();
+            if(cell.name ==='Trap')
+                board.trap(cell);
             else{
                 console.log('Do you want to grab it?');
                 v.addListener((e) => {
                     if (e.name === "Y" && e.state == "DOWN") {
-                        user.grab(board[user.possion.x][user.possion.y]);
+                        user.grab(board[board.user.getPosition().x][board.user.getPosition().y]);
                     }
                     if (e.name === "N" && e.state == "DOWN")
                     return;
                 });
             }
         }
-        if(tool instanceof Enemy){
-            fight(user,tool);
+        if(cell instanceof Enemy){
+            fight(user,cell);
         }
+        board.move(ans);
+        board.printBoard();
     }
     if(board.user.dead())
         console.log('You Are Dead!');
     if(user.getPosition() === board.getFinishPosition())
         console.log('You Win!');
-}
-           
+}           
 main();

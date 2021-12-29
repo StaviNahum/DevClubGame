@@ -17,7 +17,7 @@ export class Board {
     this.generate();
   }
 
-  getIndex(position){
+  getCell(position){
     return this.board[position.x][position.y];
   }
 
@@ -99,7 +99,7 @@ export class Board {
         }
   }
 
-  move(direction) {
+  getNewPosition(direction) {  
     const position = this.user.getPosition();
     const x = position.x
     const y = position.y;
@@ -111,6 +111,7 @@ export class Board {
         }
         else {
           console.log(`[Error] - You are trying to move out side the board! Try another direction`);
+          return false;
         }
         break;
       case "down":
@@ -119,6 +120,7 @@ export class Board {
         }
         else {
           console.log(`[Error] - You are trying to move out side the board! Try another direction`);
+          return false;
         }
         break;
       case "right":
@@ -127,6 +129,7 @@ export class Board {
         }
         else {
           console.log(`[Error] - You are trying to move out side the board! Try another direction`);
+          return false;
         }
         break;
       case "left":
@@ -135,17 +138,22 @@ export class Board {
         }
         else {
           console.log(`[Error] - You are trying to move out side the board! Try another direction`);
+          return false;
         }
         break;
       default:
         console.log("[Error] - Wrong direction");
-        break;
+        return false;
     }
-
     this.board[y][x] = null;
     let newPosition = this.user.getPosition();
-    let newX = newPosition.x;
-    let newY = newPosition.y;
+    return newPosition;
+
+  }
+
+  move(newPosition) {
+    const newX = newPosition.x;
+    const newY = newPosition.y;
     this.board[newY][newX] = this.user;    
   }
 }
