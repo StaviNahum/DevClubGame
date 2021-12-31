@@ -12,6 +12,8 @@ export class Player {
         console.log(`${this.name} - attack: ${this.attack}  defense: ${this.defense}`)
         console.log(`${player.name} - attack: ${player.attack}  defense: ${player.defense}`)
         let damage = this.attack - player.defense;
+
+        // Can reach to infinity loop cause the 0 demage.
         if(damage < 0)
             damage = 0;
         player.sethealth(damage);
@@ -42,10 +44,6 @@ export class Player {
 
     getIcon(){
         return this.icon;
-    }
-
-    attack(player) {
-        player.beenAttacked(this);
     }
 
     dead() {

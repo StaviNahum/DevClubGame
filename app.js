@@ -20,11 +20,6 @@ function generateArr(arrType) {
     return arr;
 }
 
-function openmenu() {
-    console.log('~MOVEMENT~');
-    console.log('1. Right 2. Left 3. Up 4. Down (write in lower case)');
-}
-
 function askQuestion(query) {
     const rl = readline.createInterface({
         input: process.stdin,

@@ -86,7 +86,8 @@ export class Board {
       console.log (`[Fight] - Round: ${round}`);
       this.user.hit(enemy);
       if(enemy.dead()){
-        let enemyIndex = this.enemies.findIndex(((e) => e.name === enemy.name));
+        let enemyIndex = this.enemies.findIndex((e) => {
+                                                       e.name === enemy.name});
         delete this.enemies[enemyIndex];
         console.log('[Win] - You defeated your enemy Well Done!!');
         break;
@@ -150,7 +151,6 @@ export class Board {
     this.board[y][x] = null;
     let newPosition = this.user.getPosition();
     return newPosition;
-
   }
 
   // The function gets the new position of the user and update the position in the board
